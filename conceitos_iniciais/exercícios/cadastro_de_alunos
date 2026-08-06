@@ -1,6 +1,24 @@
 
+alunos_cadastrados = []
+
 def adicionar_aluno():
-    print('Adicionei aluno')
+    aluno_cadastrado = {'nome':'', 'idade':'', 'nota':''}
+    aluno_cadastrado['nome'] = input('Insira o nome do aluno: ')
+    aluno_cadastrado['idade'] = input('Insira a idade do aluno: ')
+    aluno_cadastrado['nota'] = input('Insira a nota do Aluno: ')
+    alunos_cadastrados.append(aluno_cadastrado)
+    print(aluno_cadastrado)
+    print(alunos_cadastrados)
+    pergunta_adc = input('\nAdicionar novo aluno?\n1-SIM\n2-NÃO\nDigite a opção desejada: ')
+    if pergunta_adc == '1':
+        adicionar_aluno()
+    elif pergunta_adc == '2':
+        return
+    else:
+        print('Opção inválida')
+        
+    
+    
 
 def listar_alunos():
     print('Listei todos os alunos')
@@ -14,42 +32,42 @@ def remover_aluno():
 def media_geral_alunos():
     print('Mostrei média geral dos alunos')
 
-def sair_menu():
-    print('Saí do menu')
 
 
 
 
 
 
-
-while True:
-    numero_entrada_menu = input('MENU INICIAL\n1-Adicionar aluno\n2-Listar todos os alunos\n3-Buscar aluno pelo nome\n4-Remover aluno\n5-Mostrar média geral das notas\n6-Sair\nDigite a opção desejada: ')
-    if numero_entrada_menu == '1':
-        print('Você escolheu a opção Adicionar aluno')
-        adicionar_aluno()
+def menu():
+    while True:
+        numero_entrada_menu = input('MENU INICIAL\n1-Adicionar aluno\n2-Listar todos os alunos\n3-Buscar aluno pelo nome\n4-Remover aluno\n5-Mostrar média geral das notas\n6-Sair\nDigite a opção desejada: ')
+        if numero_entrada_menu == '1':
+            print('Você escolheu a opção Adicionar aluno')
+            adicionar_aluno()
+            
         
-    elif numero_entrada_menu == '2':
-        print('Você escolheu a opção Listar todos os alunos')
-        listar_alunos()
+        elif numero_entrada_menu == '2':
+            print('Você escolheu a opção Listar todos os alunos')
+            listar_alunos()
 
-    elif numero_entrada_menu == '3':
-        print('Você escolheu a opção Buscar aluno pelo nome')
-        buscar_aluno()
+        elif numero_entrada_menu == '3':
+            print('Você escolheu a opção Buscar aluno pelo nome')
+            buscar_aluno()
 
-    elif numero_entrada_menu == '4':
-        print('Você escolheu a opção Remover Aluno')
-        remover_aluno()
+        elif numero_entrada_menu == '4':
+            print('Você escolheu a opção Remover Aluno')
+            remover_aluno()
 
-    elif numero_entrada_menu == '5':
-        print('Você escolheu a opção Mostrar média geral das notas')
-        media_geral_alunos()
+        elif numero_entrada_menu == '5':
+            print('Você escolheu a opção Mostrar média geral das notas')
+            media_geral_alunos()
 
-    elif numero_entrada_menu == '6':
-        print('Você escolheu a opção Sair')
-        sair_menu()
+        elif numero_entrada_menu == '6':
+            break
 
-    elif numero_entrada_menu != '1' and numero_entrada_menu != '2' and numero_entrada_menu != '3' and numero_entrada_menu != '4' and numero_entrada_menu != '5' and numero_entrada_menu != '6':
-        print('Digite uma opção válida')
-    else:
-        print('Digite uma opção válida')
+        elif numero_entrada_menu != '1' and numero_entrada_menu != '2' and numero_entrada_menu != '3' and numero_entrada_menu != '4' and numero_entrada_menu != '5' and numero_entrada_menu != '6':
+            print('Digite uma opção válida')
+        else:
+            print('Digite uma opção válida')
+
+menu()
