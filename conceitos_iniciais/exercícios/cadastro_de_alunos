@@ -5,10 +5,17 @@ def adicionar_aluno():
     aluno_cadastrado = {'nome':'', 'idade':'', 'nota':''}
     aluno_cadastrado['nome'] = input('Insira o nome do aluno: ')
     aluno_cadastrado['idade'] = input('Insira a idade do aluno: ')
-    aluno_cadastrado['nota'] = input('Insira a nota do Aluno: ')
+    while True:
+        nota = float(input('Insira a nota do aluno (0 a 10): '))
+
+        if 0 <= nota <= 10:
+            aluno_cadastrado['nota'] = nota
+            break
+        else:
+            print('Nota inválida. Digite uma nota entre 0 e 10.')
     alunos_cadastrados.append(aluno_cadastrado)
-    print(aluno_cadastrado)
-    print(alunos_cadastrados)
+    
+    
     pergunta_adc = input('\nAdicionar novo aluno?\n1-SIM\n2-NÃO\nDigite a opção desejada: ')
     if pergunta_adc == '1':
         adicionar_aluno()
@@ -21,16 +28,52 @@ def adicionar_aluno():
     
 
 def listar_alunos():
-    print('Listei todos os alunos')
+    if not alunos_cadastrados:
+        print('Nenhum aluno cadastrado')
+    else:
+        for lista_de_alunos in alunos_cadastrados:
+            print(lista_de_alunos)
+    
+        
 
 def buscar_aluno():
-    print('Busquei aluno pelo nome')
+    if not alunos_cadastrados:
+        print('Nenhum aluno cadastrado')
+    else:
+        pesquisar_aluno = input('Digite o nome do aluno que deseja encontrar: ')
+        for aluno in alunos_cadastrados:
+            if aluno['nome'] == pesquisar_aluno:
+                print(aluno)
+                return
+
+        print('Aluno não encontrado')
+
+
 
 def remover_aluno():
-    print('Removi aluno')
+    if not alunos_cadastrados:
+            print('Nenhum aluno cadastrado')
+    else:
+        pesquisar_aluno = input('Digite o nome do aluno que deseja remover: ')
+        for aluno in alunos_cadastrados:
+            if aluno['nome'] == pesquisar_aluno:
+                alunos_cadastrados.remove(aluno)
+                return
+    
+            print('Aluno não encontrado')
+    
 
 def media_geral_alunos():
-    print('Mostrei média geral dos alunos')
+    if not alunos_cadastrados:
+        print('Nenhum aluno cadastrado')
+    else:
+        total_notas = 0
+        for media_das_notas in alunos_cadastrados:
+            total_notas = total_notas + int(media_das_notas['nota'])
+        media = total_notas / len(alunos_cadastrados)
+        print(f'A média das notas dos alunos é: {media:.2f}')
+        return
+            
 
 
 
@@ -42,24 +85,24 @@ def menu():
     while True:
         numero_entrada_menu = input('MENU INICIAL\n1-Adicionar aluno\n2-Listar todos os alunos\n3-Buscar aluno pelo nome\n4-Remover aluno\n5-Mostrar média geral das notas\n6-Sair\nDigite a opção desejada: ')
         if numero_entrada_menu == '1':
-            print('Você escolheu a opção Adicionar aluno')
+            print('Você escolheu a opção adicionar aluno')
             adicionar_aluno()
             
         
         elif numero_entrada_menu == '2':
-            print('Você escolheu a opção Listar todos os alunos')
+            print('Você escolheu a opção listar todos os alunos')
             listar_alunos()
 
         elif numero_entrada_menu == '3':
-            print('Você escolheu a opção Buscar aluno pelo nome')
+            print('Você escolheu a opção buscar aluno pelo nome')
             buscar_aluno()
 
         elif numero_entrada_menu == '4':
-            print('Você escolheu a opção Remover Aluno')
+            print('Você escolheu a opção remover aluno')
             remover_aluno()
 
         elif numero_entrada_menu == '5':
-            print('Você escolheu a opção Mostrar média geral das notas')
+            print('Você escolheu a opção mostrar média geral das notas')
             media_geral_alunos()
 
         elif numero_entrada_menu == '6':
